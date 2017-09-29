@@ -4,9 +4,45 @@ import ReactDOM from 'react-dom';
 
 class App extends React.Component {
 
+	constructor(props) {
+		super(props);
+        console.log(props);
+
+    }
+
 	render() {
 		return (
-			<div>Hello</div>
+			<main>
+				<header>
+					<h1>{this.props.title}</h1>
+				</header>
+
+				<section className="todo-list">
+					<div className="todo completed">
+						<button className="checkbox icon">
+							<i className="material-icons">check_box</i>
+						</button>
+
+						<span className="todo-title">Изучить JS6</span>
+
+						<button className="delete icon">
+							<i className="material-icons">delete</i>
+						</button>
+					</div>
+
+					<div className="todo">
+						<button className="checkbox icon">
+							<i className="material-icons">check_box_outline_blank</i>
+						</button>
+
+						<span className="todo-title">Изучить React.js</span>
+
+						<button className="delete icon">
+							<i className="material-icons">delete</i>
+						</button>
+					</div>
+				</section>
+			</main>
 		);
 	}
 }
