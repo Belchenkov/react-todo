@@ -1,51 +1,31 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import Header from './components/Header';
+import Todo from './components/Todo';
 
 class App extends React.Component {
-
 	constructor(props) {
 		super(props);
         console.log(props);
-
     }
 
 	render() {
 		return (
 			<main>
-				<header>
-					<h1>{this.props.title}</h1>
-				</header>
+				<Header title={this.props.title}/>
 
 				<section className="todo-list">
-					<div className="todo completed">
-						<button className="checkbox icon">
-							<i className="material-icons">check_box</i>
-						</button>
-
-						<span className="todo-title">Изучить JS6</span>
-
-						<button className="delete icon">
-							<i className="material-icons">delete</i>
-						</button>
-					</div>
-
-					<div className="todo">
-						<button className="checkbox icon">
-							<i className="material-icons">check_box_outline_blank</i>
-						</button>
-
-						<span className="todo-title">Изучить React.js</span>
-
-						<button className="delete icon">
-							<i className="material-icons">delete</i>
-						</button>
-					</div>
+					<Todo title={"Изучить EcmaScript 2015"} completed={true} />
+					<Todo title={"Изучить React.js"} completed={false} />
 				</section>
 			</main>
 		);
 	}
 }
 
+App.defaultProps = {
+	title: 'React Todo'
+};
 
 ReactDOM.render(<App />, document.getElementById('root'));
