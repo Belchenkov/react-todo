@@ -14,7 +14,7 @@ class Todo extends React.Component {
                 `todo${this.props.completed ? ' completed' : ''}`
             }>
 
-                <Checkbox checked={this.props.completed} />
+                <Checkbox initiallyChecked={this.props.completed} />
 
                 <span className="todo-title">{this.props.title}</span>
 
