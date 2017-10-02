@@ -10,7 +10,9 @@ class Todo extends React.Component {
 
     render() {
         return (
-            <div className="todo">
+            <div className={
+                `todo${this.props.completed ? ' completed' : ''}`
+            }>
 
                 <Checkbox checked={this.props.completed} />
 
