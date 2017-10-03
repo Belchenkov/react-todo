@@ -8,17 +8,41 @@ import todos from "./todos";
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-        console.log(props);
+
+		this.state = {
+			todos: this.props.initialData
+		};
+
+        this.handleStatusChange = this.handleStatusChange.bind(this);
     }
+
+    handleStatusChange(id) {
+		let todos = this.state.todos.map(todo => {
+            if (todo.id === id) {
+				todo.completed = !todo.completed;
+            }
+            return todo;
+        });
+
+		this.setState({
+			todos
+		});
+	}
 
 	render() {
 		return (
 			<main>
-				<Header title={this.props.title}/>
+				<Header title={this.props.title} />
 
 				<section className="todo-list">
-					{this.props.todos.map(
-						todo => <Todo key={todo.id} title={todo.title} completed={todo.completed} />
+					{this.state.todos.map(todo =>
+						<Todo
+							key={todo.id}
+							id={todo.id}
+							title={todo.title}
+							completed={todo.completed}
+							onStatusChange={this.handleStatusChange}
+						/>
 					)}
 				</section>
 			</main>
@@ -28,7 +52,7 @@ class App extends React.Component {
 
 App.propsTypes = {
 	title: React.PropTypes.string,
-	todos: React.PropTypes.arrayOf(React.PropTypes.shape({
+    initialData: React.PropTypes.arrayOf(React.PropTypes.shape({
 		id: React.PropTypes.number.isRequired,
 		title: React.PropTypes.string.isRequired,
 		completed: React.PropTypes.bool.isRequired
@@ -39,4 +63,4 @@ App.defaultProps = {
 	title: 'React Todo'
 };
 
-ReactDOM.render(<App todos={todos} />, document.getElementById('root'));
+ReactDOM.render(<App initialData={todos} />, document.getElementById('root'));

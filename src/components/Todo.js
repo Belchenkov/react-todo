@@ -9,12 +9,13 @@ class Todo extends React.Component {
     }
 
     render() {
+
         return (
             <div className={
                 `todo${this.props.completed ? ' completed' : ''}`
             }>
 
-                <Checkbox initiallyChecked={this.props.completed} />
+                <Checkbox checked={this.props.completed} onChange={() => this.props.onStatusChange(this.props.id) } />
 
                 <span className="todo-title">{this.props.title}</span>
 
@@ -26,8 +27,10 @@ class Todo extends React.Component {
 }
 
 Todo.propsTypes = {
+    id: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
-    completed: React.PropTypes.bool.isRequired
+    completed: React.PropTypes.bool.isRequired,
+    onStatusChange: React.PropTypes.func.isRequired
 };
 
 export default Todo;

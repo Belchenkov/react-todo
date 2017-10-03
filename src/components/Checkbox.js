@@ -3,25 +3,12 @@ import React from 'react';
 class Checkbox extends React.Component {
     constructor(props) {
         super(props);
-
-        this.state = {
-            checked: this.props.initiallyChecked
-        };
-
-        this.handleClick = this.handleClick.bind(this);
     }
-
-    handleClick(event) {
-       this.setState({
-           checked: !this.state.checked
-       });
-    }
-
     render() {
         return (
             <div>
-                <button className="checkbox icon" onClick={this.handleClick}>
-                    <i className="material-icons">{this.state.checked ? 'check_box' : 'check_box_outline_blank'}</i>
+                <button className="checkbox icon" onClick={this.props.onChange}>
+                    <i className="material-icons">{this.props.checked ? 'check_box' : 'check_box_outline_blank'}</i>
                 </button>
             </div>
         )
@@ -29,7 +16,8 @@ class Checkbox extends React.Component {
 }
 
 Checkbox.propTypes = {
-    initiallyChecked: React.PropTypes.bool.isRequired
+    checked: React.PropTypes.bool.isRequired,
+    onChange: React.PropTypes.func.isRequired
 };
 
 export default Checkbox;
