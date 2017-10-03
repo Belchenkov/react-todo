@@ -14,7 +14,8 @@ class App extends React.Component {
 		};
 
         this.handleStatusChange = this.handleStatusChange.bind(this);
-    }
+        this.handleDelete = this.handleDelete.bind(this);
+	}
 
     handleStatusChange(id) {
 		let todos = this.state.todos.map(todo => {
@@ -29,6 +30,12 @@ class App extends React.Component {
 		});
 	}
 
+    handleDelete(id) {
+		let todos = this.state.todos.filter(todo => todo.id !== id);
+
+		this.setState({ todos });
+	}
+
 	render() {
 		return (
 			<main>
@@ -41,6 +48,7 @@ class App extends React.Component {
 							id={todo.id}
 							title={todo.title}
 							completed={todo.completed}
+							onDelete={this.handleDelete}
 							onStatusChange={this.handleStatusChange}
 						/>
 					)}

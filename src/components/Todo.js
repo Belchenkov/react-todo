@@ -19,7 +19,11 @@ class Todo extends React.Component {
 
                 <span className="todo-title">{this.props.title}</span>
 
-                <Button className="delete icon" icon="delete" />
+                <Button
+                    className="delete icon"
+                    icon="delete"
+                    onClick={() => this.props.onDelete(this.props.id)}
+                />
 
             </div>
         )
@@ -30,7 +34,8 @@ Todo.propsTypes = {
     id: React.PropTypes.number.isRequired,
     title: React.PropTypes.string.isRequired,
     completed: React.PropTypes.bool.isRequired,
-    onStatusChange: React.PropTypes.func.isRequired
+    onStatusChange: React.PropTypes.func.isRequired,
+    onDelete: React.PropTypes.func.isRequired
 };
 
 export default Todo;
