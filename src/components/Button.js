@@ -8,8 +8,12 @@ class Button extends React.Component {
     render() {
         return (
             <div>
-                <button className={this.props.className} onClick={this.props.onClick}>
-                    <i className="material-icons">{this.props.icon}</i>
+                <button className={this.props.className} {...this.props}  onClick={this.props.onClick}>
+                    {this.props.icon ?
+                        <i className="material-icons">{this.props.icon}</i>
+                        :
+                        this.props.children
+                    }
                 </button>
             </div>
         )
@@ -19,7 +23,8 @@ class Button extends React.Component {
 Button.propTypes = {
      className: React.PropTypes.string,
      icon: React.PropTypes.string,
-     onClick: React.PropTypes.func
+     onClick: React.PropTypes.func,
+     children: React.PropTypes.node
 };
 
 export default Button;

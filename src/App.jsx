@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom';
 
 import Header from './components/Header';
 import Todo from './components/Todo';
+import Form from "./components/Form";
+
 import todos from "./todos";
 
 class App extends React.Component {
@@ -53,6 +55,7 @@ class App extends React.Component {
 						/>
 					)}
 				</section>
+                <Form />
 			</main>
 		);
 	}
