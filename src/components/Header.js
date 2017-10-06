@@ -1,5 +1,6 @@
 import React from 'react';
 import Status from "./Status";
+import Stopwatch from "./Stopwatch";
 
 class Header extends React.Component {
     constructor(props) {
@@ -11,6 +12,7 @@ class Header extends React.Component {
             <header>
                 <Status todos={this.props.todos} />
                 <h1>{this.props.title}</h1>
+                <Stopwatch />
             </header>
         )
     }

@@ -20,7 +20,6 @@ class App extends React.Component {
         this.handleAdd = this.handleAdd.bind(this);
         this.handleEdit = this.handleEdit.bind(this);
 	}
-
     handleStatusChange(id) {
 		let todos = this.state.todos.map(todo => {
             if (todo.id === id) {
