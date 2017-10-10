@@ -26,6 +26,12 @@ module.exports = {
         ]
     },
 
+    devServer: {
+      proxy: {
+        "/api": "http://localhost:3030"
+      }
+    },
+
     devtool: 'cheap-eval-source-map',
     
     resolve: {

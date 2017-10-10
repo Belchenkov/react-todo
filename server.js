@@ -5,7 +5,7 @@ const path = require('path');
 const express = require('express');
 const bodyParser = require('body-parser');
 
-const todos = require('./api/todos.json');
+const todos = require('./api/todos');
 
 const app = express();
 
@@ -18,15 +18,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use((req, res, next) => {
-  res.setRequestHeader('Cache-Control', 'no-cache');
+  res.setHeader('Cache-Control', 'no-cache');
   next();
 });
 
-app.get('api/todos', (req, res) => {
+app.get('/api/todos', (req, res) => {
   res.send(todos);
 });
 
-app.post('api/todos', (req, res) => {
+app.post('/api/todos', (req, res) => {
   const todo = {
     id: nextId++,
     title: req.body.title,
@@ -37,7 +37,7 @@ app.post('api/todos', (req, res) => {
   res.send(todo);
 });
 
-app.put('api/todos/:id', (req, res) => {
+app.put('/api/todos/:id', (req, res) => {
   const todo = todos.find(todo => todo.id == req.params.id);
 
   if (!todo) {

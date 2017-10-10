@@ -5,21 +5,27 @@ import Header from './components/Header';
 import Todo from './components/Todo';
 import Form from "./components/Form";
 
-import todos from "./todos";
-
 class App extends React.Component {
 	constructor(props) {
 		super(props);
 
 		this.state = {
-			todos: this.props.initialData
+			todos: []
 		};
 
-        this.handleStatusChange = this.handleStatusChange.bind(this);
-        this.handleDelete = this.handleDelete.bind(this);
-        this.handleAdd = this.handleAdd.bind(this);
-        this.handleEdit = this.handleEdit.bind(this);
+		this.handleStatusChange = this.handleStatusChange.bind(this);
+		this.handleDelete = this.handleDelete.bind(this);
+		this.handleAdd = this.handleAdd.bind(this);
+		this.handleEdit = this.handleEdit.bind(this);
 	}
+
+	componentDidMount() {
+	  fetch('/api/todos')
+        .then(response => response.json())
+        .then(todos => this.setState({ todos }))
+        .catch(error => console.error(error));
+  }
+
     handleStatusChange(id) {
 		let todos = this.state.todos.map(todo => {
             if (todo.id === id) {
@@ -91,17 +97,9 @@ class App extends React.Component {
 	}
 }
 
-App.propsTypes = {
-	title: React.PropTypes.string,
-    initialData: React.PropTypes.arrayOf(React.PropTypes.shape({
-		id: React.PropTypes.number.isRequired,
-		title: React.PropTypes.string.isRequired,
-		completed: React.PropTypes.bool.isRequired
-	})).isRequired
-};
 
 App.defaultProps = {
 	title: 'React Todo'
 };
 
-ReactDOM.render(<App initialData={todos} />, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));
