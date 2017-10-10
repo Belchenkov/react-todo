@@ -9,7 +9,7 @@ const todos = require('./api/todos');
 
 const app = express();
 
-let nextId = 6;
+let nextId = 7;
 
 app.set('port', (process.env.PORT || 3030));
 
@@ -50,14 +50,14 @@ app.put('/api/todos/:id', (req, res) => {
 });
 
 
-app.patch('api/todos/:id', (req, res) => {
+app.patch('/api/todos/:id', (req, res) => {
   const todo = todos.find(todo => todo.id == req.params.id);
 
   if (!todo) {
     return res.sendStatus(404);
   }
 
-  todo.comleted = !todo.comleted;
+  todo.completed = !todo.completed;
 
   res.json(todo);
 });
