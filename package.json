@@ -1,12 +1,14 @@
 {
-  "name": "react-basics",
+  "name": "react-todo",
   "version": "1.0.0",
-  "description": "Исходный код для курса Основы React",
+  "description": "Приложение React Todos",
   "scripts": {
     "start": "webpack-dev-server --inline --hot --content-base ./public",
     "build": "webpack -p"
   },
   "dependencies": {
+    "body-parser": "^1.18.2",
+    "express": "^4.16.1",
     "react": "15.4.2",
     "react-dom": "15.4.2"
   },
