@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
+import ReactCSSTransitionsGroup from 'react-addons-transition-group';
 
 import Header from './components/Header';
 import Todo from './components/Todo';
@@ -90,7 +91,15 @@ class App extends React.Component {
 			<main>
 				<Header title={this.props.title} todos={this.state.todos} />
 
-				<section className="todo-list">
+        <ReactCSSTransitionsGroup 
+          className="todo-list"
+          component="section"
+          transitionName="slide"
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={500}
+          transitionAppear={true}
+          transitionAppearTimeout={500}
+        >
 					{this.state.todos.map(todo =>
 						<Todo
 							key={todo.id}
@@ -102,7 +111,7 @@ class App extends React.Component {
 							onEdit={this.handleEdit}
 						/>
 					)}
-				</section>
+				</ReactCSSTransitionsGroup>
                 <Form onAdd={this.handleAdd} />
 			</main>
 		);
